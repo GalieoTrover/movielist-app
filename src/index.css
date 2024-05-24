@@ -207,6 +207,10 @@ body {
   font-family: var(--site-font);
   background-color: var(--black-color);
   color: var(--white-color);
+  position: relative;
+}
+
+body * {
   box-sizing: border-box;
 }
 
@@ -312,13 +316,16 @@ header .header--search .header--search-icon:hover {
   transition: all 0.3s ease-in;
 }
 
-.movies-list .movies-list--card:hover .movies-list--card-figure img {
+.movies-list
+  .movies-list--card:hover
+  .movies-list--card-figure
+  .movies-list--card-figure-img {
   opacity: 0.8;
   transition: all 0.3s ease-in;
 }
 
 .movies-list .movies-list--card:hover .movies-list--card-info .more-info {
-  /* display: block; */
+  display: block;
   padding-top: 0px;
   transition: all 0.3s ease-in;
 }
@@ -346,14 +353,95 @@ header .header--search .header--search-icon:hover {
 }
 
 .movies-list .movies-list--card .movies-list--card-info .more-info {
-  /* display: none; */
+  display: none;
   padding-top: 10px;
   margin: 15px 0;
   line-height: 1.2;
 }
 
-.movies-list .movies-list--card img {
+.movies-list .movies-list--card .movies-list--card-figure-img {
   border-radius: 5px;
   width: 100%;
   height: 100%;
+}
+
+/* modal window */
+.movies-list--modal {
+  width: 750px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: var(--black-color);
+  color: var(--white-color);
+  z-index: 2;
+  display: flex;
+  /* gap: 30px; */
+  /* padding: 50px; */
+  /* box-sizing: border-box; */
+  transition: all 0.3s ease-in;
+  border-radius: 5px;
+  border: 3px solid var(--secondary-color);
+}
+
+.movies-list--modal.active {
+  transform: translateX(33%);
+  transition: all 0.3s ease-in;
+}
+
+.movies-list--modal-info {
+  padding: 15px 20px;
+}
+
+.movies-list--modal-info p {
+  margin: 15px 0;
+}
+
+.movies-list--modal-closeicon {
+  width: fit-content;
+  float: right;
+  display: flex;
+  justify-content: end;
+  height: 25px;
+  padding-left: 15px;
+}
+
+/* .movies-list--modal-figure {
+  width: 300px;
+} */
+
+.movies-list--modal-figure img {
+  width: 229px;
+}
+
+.movies-list--modal-overlay {
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.movies-list .movies-list--card:nth-child(4) .movies-list--modal.active,
+.movies-list .movies-list--card:nth-child(5) .movies-list--modal.active,
+.movies-list .movies-list--card:nth-child(9) .movies-list--modal.active,
+.movies-list .movies-list--card:nth-child(10) .movies-list--modal.active,
+.movies-list .movies-list--card:nth-child(14) .movies-list--modal.active,
+.movies-list .movies-list--card:nth-child(15) .movies-list--modal.active,
+.movies-list .movies-list--card:nth-child(19) .movies-list--modal.active,
+.movies-list .movies-list--card:nth-child(20) .movies-list--modal.active {
+  right: 0;
+  left: unset;
+  transform: translateX(-33%);
+}
+
+.movie-genres-wrap {
+  display: flex;
+  gap: 5px;
+}
+
+.movie-genres-wrap .movie-genres {
+  background: var(--header-bg);
+  padding: 5px;
+  border-radius: 5px;
 }

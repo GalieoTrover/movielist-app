@@ -1,23 +1,36 @@
-import movies from '../movies.json'
-import MovieCard from './MovieCard';
+import MovieCard from "./MovieCard";
+import { useState, useEffect } from "react";
 
 const MoviesList = () => {
-    // console.log(movies);
-    // console.log(jobs);
+  const [movieData, setMovieData] = useState([]);
 
-    return (
-        <section id="moviesList">
-            <div className="container">
-                <div className="year-heading">2012</div>
-                <div className="movies-list">
-                    {movies.map((movie) => (
-                        <MovieCard key={movie.id} movie={movie} />
-                    ))}
-                </div>
-            </div>
-        </section>
-    )
-}
+  const url =
+    "https://api.themoviedb.org/3/discover/movie?api_key=2dca580c2a14b55200e784d157207b4d&sort_by=popularity.desc&primary_release_year=2012&page=1&vote_count.gte=100";
 
-// https://image.tmdb.org/t/p/w300_and_h450_bestv2
+  const getMoviesData = async () => {
+    const fetchData = await fetch(url);
+    const jsonData = await fetchData.json();
+    const data = await jsonData;
+
+    setMovieData(data.results);
+  };
+
+  useEffect(() => {
+    getMoviesData();
+  }, []);
+
+  return (
+    <section id="moviesList">
+      <div className="container">
+        <div className="year-heading">2012</div>
+        <div className="movies-list">
+          {movieData.map((movie) => (
+            <MovieCard key={movie.id} movie={movie} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
 export default MoviesList;
