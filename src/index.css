@@ -445,3 +445,10 @@ header .header--search .header--search-icon:hover {
   padding: 5px;
   border-radius: 5px;
 }
+
+.movie-cast-wrap,
+.movie-director-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}

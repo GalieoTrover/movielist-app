@@ -2,7 +2,7 @@ import { useState } from "react";
 import MovieModal from "./MovieModal";
 
 const MovieCard = ({ movie }) => {
-  const desc = movie.overview.substring(0, 100) + " ...";
+  const desc = movie.overview.substring(0, 100) + "...";
 
   const [modalVisible, setModalVisible] = useState(false);
   const [getMovieInfo, setGetMovieInfo] = useState([]);
