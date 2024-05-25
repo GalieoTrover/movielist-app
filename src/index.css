@@ -384,6 +384,15 @@ header .header--search .header--search-icon:hover {
   border: 3px solid var(--secondary-color);
 }
 
+.modal-overlay {
+  background: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
 .movies-list--modal.active {
   transform: translateX(33%);
   transition: all 0.3s ease-in;

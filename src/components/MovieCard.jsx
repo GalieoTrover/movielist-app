@@ -5,6 +5,7 @@ const MovieCard = ({ movie }) => {
   const desc = movie.overview.substring(0, 100) + "...";
 
   const [modalVisible, setModalVisible] = useState(false);
+  const [modalOverlay, setModalOverlay] = useState(false);
   const [getMovieInfo, setGetMovieInfo] = useState([]);
   const [getMovieCredits, setGetMovieCredits] = useState([]);
 
@@ -21,9 +22,12 @@ const MovieCard = ({ movie }) => {
     const credits = await jsonCredits;
 
     setModalVisible((prevState) => !prevState);
+    setModalOverlay((prevState) => !prevState);
     setGetMovieInfo(info);
     setGetMovieCredits(credits);
   };
+
+  modalOverlay ? document.querySelector('.modal-overlay').style.display = 'block' : document.querySelector('.modal-overlay').style.display = 'none';
 
   return (
     <div className="movies-list--card" onClick={getSingleMovieInfo}>
@@ -44,6 +48,7 @@ const MovieCard = ({ movie }) => {
 
       <MovieModal
         modalVisible={modalVisible}
+        modalOverlay={modalOverlay}
         movie={movie}
         getMovieInfo={getMovieInfo}
         getMovieCredits={getMovieCredits}

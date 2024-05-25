@@ -1,9 +1,9 @@
 import closeIcon from "../assets/images/closeIcon.svg";
 import credits from "../credits.json";
 
-const MovieModal = ({ modalVisible, movie, getMovieInfo, getMovieCredits }) => {
+const MovieModal = ({ modalVisible, modalOverlay, movie, getMovieInfo, getMovieCredits }) => {
   return (
-    modalVisible && (
+    modalVisible && modalOverlay && (
       <div
         className={
           modalVisible ? "movies-list--modal active" : "movies-list--modal"
