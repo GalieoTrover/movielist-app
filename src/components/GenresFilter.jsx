@@ -1,17 +1,13 @@
-const GenresFilter = () => {
+const GenresFilter = ({ movieGenres, getMoviesByGenre }) => {
     return (
         <section id="filter">
             <div className="container">
                 <div className="genres-filter">
-                    <div className="genres-filter--category">
-                        <p>All</p>
-                    </div>
-                    <div className="genres-filter--category">
-                        <p>Action</p>
-                    </div>
-                    <div className="genres-filter--category">
-                        <p>Comedy</p>
-                    </div>
+                    {!movieGenres.length ? '' : movieGenres.map((genre) => (
+                        <div className="genres-filter--category" key={genre.id} onClick={() => getMoviesByGenre(genre.id)}>
+                            <p>{genre.name}</p>
+                        </div>
+                    ))}
                 </div>
             </div>
         </section>

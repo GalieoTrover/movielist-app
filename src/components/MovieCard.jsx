@@ -27,7 +27,8 @@ const MovieCard = ({ movie }) => {
     setGetMovieCredits(credits);
   };
 
-  modalOverlay ? document.querySelector('.modal-overlay').style.display = 'block' : document.querySelector('.modal-overlay').style.display = 'none';
+  const overlay = document.querySelector('.modal-overlay');
+  modalOverlay ? overlay.style.display = 'block' : overlay.style.display = 'none';
 
   return (
     <div className="movies-list--card" onClick={getSingleMovieInfo}>

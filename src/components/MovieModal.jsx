@@ -1,5 +1,4 @@
 import closeIcon from "../assets/images/closeIcon.svg";
-import credits from "../credits.json";
 
 const MovieModal = ({ modalVisible, modalOverlay, movie, getMovieInfo, getMovieCredits }) => {
   return (
