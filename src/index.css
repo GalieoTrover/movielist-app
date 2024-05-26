@@ -379,9 +379,9 @@ header .header--search .header--search-icon:hover {
 /* modal window */
 .movies-list--modal {
   width: 800px;
-  height: 100%;
+  height: 105%;
   position: absolute;
-  top: 0;
+  top: -9px;
   left: 0;
   background: var(--black-color);
   color: var(--white-color);
@@ -421,13 +421,21 @@ header .header--search .header--search-icon:hover {
 .movies-list--modal-info .movie-desc,
 .movies-list--modal-info .movie-info {
   margin: 15px 0;
-  line-height: 1.2;
+  line-height: 1.4;
+}
+
+.movies-list--modal-info .movie-desc {
+  max-height: 90px;
+  overflow: auto;
+}
+
+.movies-list--modal-info .movie-tagline {
+  margin-top: 5px;
 }
 
 .movies-list--modal-info .movie-links {
   display: inline-flex;
   gap: 10px;
-  align-items: center;
 }
 
 .movies-list--modal-info .movie-links--imdb {
@@ -436,6 +444,16 @@ header .header--search .header--search-icon:hover {
 
 .movies-list--modal-info .movie-links--imdb img {
   width: 100%;
+}
+
+.movies-list--modal-info .movie-links--home img {
+  width: 25px;
+}
+
+.movies-list--modal-info .movie-title--links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .movies-list--modal-closeicon {
@@ -489,17 +507,78 @@ header .header--search .header--search-icon:hover {
 
 .movie-cast-wrap,
 .movie-director-wrap {
+  display: inline-flex;
+  flex-direction: column;
+  width: 50%;
+  align-items: center;
+  gap: 10px;
+  margin: 0px !important;
+}
+
+.movie-info .movie-casts {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  justify-content: center;
+}
+
+.movie-cast-wrap .movie-casts .movie-cast {
+  width: calc(100% / 3);
+}
+
+.movie-cast-wrap span,
+.movie-director-wrap span {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
+.movie-cast-wrap .movie-cast--icon,
+.movie-director-wrap .movie-cast--icon {
+  height: 30px;
+}
+
+.movie-cast-wrap .movie-cast--icon img,
+.movie-director-wrap .movie-cast--icon img {
+  height: 100%;
+}
+
+.movie-cast--figure {
+  width: 100%;
+  height: 80px;
+}
+
+.movie-cast--figure img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.movie-cast--name {
+  background: var(--white-color);
+  color: var(--black-color);
+  text-align: center;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  font-size: 13px;
+  padding: 3px 5px;
+  font-weight: 600;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+}
+
 .movies-list .selected-card {
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
-  border-left-width: 0px;
+  /* border-left-width: 0px; */
   border: 2px solid var(--primary-color);
-  border-left-width: 1px !important;
+  border-right: 0px !important;
 }
 
 .movies-list .selected-card .movies-list--card-info {
@@ -530,4 +609,32 @@ header .header--search .header--search-icon:hover {
   margin: 15px 0;
   padding-top: 10px;
   transition: all 0.3s ease-in;
+}
+
+.movies-list .selected-card:nth-child(4) .movies-list--modal,
+.movies-list .selected-card:nth-child(5) .movies-list--modal,
+.movies-list .selected-card:nth-child(9) .movies-list--modal,
+.movies-list .selected-card:nth-child(10) .movies-list--modal,
+.movies-list .selected-card:nth-child(14) .movies-list--modal,
+.movies-list .selected-card:nth-child(15) .movies-list--modal,
+.movies-list .selected-card:nth-child(19) .movies-list--modal,
+.movies-list .selected-card:nth-child(20) .movies-list--modal {
+  border-right: 0px;
+  border-left: 3px solid var(--primary-color);
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.movies-list .selected-card:nth-child(4),
+.movies-list .selected-card:nth-child(5),
+.movies-list .selected-card:nth-child(9),
+.movies-list .selected-card:nth-child(10),
+.movies-list .selected-card:nth-child(14),
+.movies-list .selected-card:nth-child(15),
+.movies-list .selected-card:nth-child(19),
+.movies-list .selected-card:nth-child(20) {
+  border-right: 2px solid var(--secondary-color) !important;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-left: 0px;
 }
