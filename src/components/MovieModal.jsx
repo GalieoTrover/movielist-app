@@ -1,6 +1,9 @@
 import closeIcon from "../assets/images/closeIcon.svg";
+import imdbLogo from "../assets/images/imdbLogo.svg";
+import officialSiteLogo from "../assets/images/officialSiteLogo.svg";
 
 const MovieModal = ({ modalVisible, modalOverlay, movie, getMovieInfo, getMovieCredits }) => {
+  const desc = movie.overview.substring(0, 350) + "...";
   return (
     modalVisible && modalOverlay && (
       <div
@@ -19,8 +22,8 @@ const MovieModal = ({ modalVisible, modalOverlay, movie, getMovieInfo, getMovieC
             <img src={closeIcon} alt="closeIcon" />
           </div>
           <h2>{movie.title}</h2>
-          <p>{movie.overview}</p>
-          <div className="movie-genres-wrap">
+          <p className="movie-desc">{desc}</p>
+          <div className="movie-info movie-genres-wrap">
             {getMovieInfo &&
               getMovieInfo.genres.map((genre) => (
                 <span key={genre.id} className="movie-genres">
@@ -28,21 +31,7 @@ const MovieModal = ({ modalVisible, modalOverlay, movie, getMovieInfo, getMovieC
                 </span>
               ))}
           </div>
-          {getMovieInfo && (
-            <div className="movie-links-wrap">
-              <p>
-                <span>External Links: </span>
-                <a
-                  href={`https://www.imdb.com/title/${getMovieInfo.imdb_id}`}
-                  target="_blank"
-                >
-                  IMDB
-                </a>
-                <a href={getMovieInfo.homepage}>HOME</a>
-              </p>
-            </div>
-          )}
-          <div className="movie-cast-wrap">
+          <div className="movie-info movie-cast-wrap">
             <span>Cast:</span>
             {getMovieCredits &&
               getMovieCredits.cast.slice(0, 3).map((cast) => (
@@ -51,7 +40,7 @@ const MovieModal = ({ modalVisible, modalOverlay, movie, getMovieInfo, getMovieC
                 </p>
               ))}
           </div>
-          <div className="movie-director-wrap">
+          <div className="movie-info movie-director-wrap">
             <span>Director:</span>
             {getMovieCredits &&
               getMovieCredits.crew
@@ -62,6 +51,22 @@ const MovieModal = ({ modalVisible, modalOverlay, movie, getMovieInfo, getMovieC
                   </p>
                 ))}
           </div>
+          {getMovieInfo && (
+            <div className="movie-info movie-links-wrap">
+              <p>
+                <span>External Links: </span>
+                <div className="movie-links">
+                  <div className="movie-links--imdb">
+                    <a href={`https://www.imdb.com/title/${getMovieInfo.imdb_id}`}
+                      target="_blank"><img src={imdbLogo} alt="imdbLogo" /></a>
+                  </div>
+                  <div className="movie-links--home">
+                    <a href={getMovieInfo.homepage} target="_blank"><img src={officialSiteLogo} alt="officialSiteLogo" /></a>
+                  </div>
+                </div>
+              </p>
+            </div>
+          )}
         </div>
       </div>
     )

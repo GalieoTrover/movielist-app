@@ -251,6 +251,7 @@ header .header--search .header--search-icon {
   background-color: var(--primary-color);
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
+  border: none;
 }
 
 header .header--search .header--search-icon:hover {
@@ -348,6 +349,16 @@ header .header--search .header--search-icon:hover {
   transition: all 0.3s ease-in;
 }
 
+.movies-list--card-info h3 {
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  max-height: 37px;
+}
+
 .movies-list .movies-list--card-info p {
   margin: 10px 0;
 }
@@ -367,7 +378,7 @@ header .header--search .header--search-icon:hover {
 
 /* modal window */
 .movies-list--modal {
-  width: 750px;
+  width: 800px;
   height: 100%;
   position: absolute;
   top: 0;
@@ -385,7 +396,7 @@ header .header--search .header--search-icon:hover {
 }
 
 .modal-overlay {
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.9);
   position: absolute;
   top: 0;
   left: 0;
@@ -394,16 +405,37 @@ header .header--search .header--search-icon:hover {
 }
 
 .movies-list--modal.active {
-  transform: translateX(33%);
+  transform: translateX(30%);
   transition: all 0.3s ease-in;
+}
+
+.selected-card {
+  z-index: 2;
 }
 
 .movies-list--modal-info {
   padding: 15px 20px;
+  width: 100%;
 }
 
-.movies-list--modal-info p {
+.movies-list--modal-info .movie-desc,
+.movies-list--modal-info .movie-info {
   margin: 15px 0;
+  line-height: 1.2;
+}
+
+.movies-list--modal-info .movie-links {
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.movies-list--modal-info .movie-links--imdb {
+  width: 45%;
+}
+
+.movies-list--modal-info .movie-links--imdb img {
+  width: 100%;
 }
 
 .movies-list--modal-closeicon {
@@ -441,7 +473,7 @@ header .header--search .header--search-icon:hover {
 .movies-list .movies-list--card:nth-child(20) .movies-list--modal.active {
   right: 0;
   left: unset;
-  transform: translateX(-33%);
+  transform: translateX(-30%);
 }
 
 .movie-genres-wrap {
@@ -460,4 +492,42 @@ header .header--search .header--search-icon:hover {
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+.movies-list .selected-card {
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border-left-width: 0px;
+  border: 2px solid var(--primary-color);
+  border-left-width: 1px !important;
+}
+
+.movies-list .selected-card .movies-list--card-info {
+  height: 100%;
+  transition: all 0.5s ease-in;
+}
+
+.movies-list .selected-card .movies-list--card-info .more-info {
+  display: block !important;
+  transition: all 0.3s ease-in;
+}
+
+.movies-list .selected-card .movies-list--modal.active {
+  border-left: 0px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  transition: all 0.3s ease-in;
+  /* top: -2px;
+  height: 101%; */
+}
+
+.movies-list .selected-card:hover .movies-list--card-info {
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.movies-list .selected-card:hover .movies-list--card-info .more-info {
+  margin: 15px 0;
+  padding-top: 10px;
+  transition: all 0.3s ease-in;
 }

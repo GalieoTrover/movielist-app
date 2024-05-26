@@ -57,11 +57,6 @@ const MoviesList = ({ searchTerm, results }) => {
             : <div className="year-heading">2012</div>
         }
         <div className="movies-list">
-          {/* {searchResults.length === 0 ? movieData.map((movie) => (
-            <MovieCard key={movie.id} movie={movie} />
-          )) : searchResults.map((result) => (
-            <MovieCard key={result.id} movie={result} />
-          ))} */}
           {!results.length == 0 && results.map((result) => (
             <MovieCard key={result.id} movie={result} />
           ))}

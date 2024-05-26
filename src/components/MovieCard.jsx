@@ -3,7 +3,6 @@ import MovieModal from "./MovieModal";
 
 const MovieCard = ({ movie }) => {
   const desc = movie.overview.substring(0, 100) + "...";
-
   const [modalVisible, setModalVisible] = useState(false);
   const [modalOverlay, setModalOverlay] = useState(false);
   const [getMovieInfo, setGetMovieInfo] = useState([]);
@@ -31,7 +30,7 @@ const MovieCard = ({ movie }) => {
   modalOverlay ? overlay.style.display = 'block' : overlay.style.display = 'none';
 
   return (
-    <div className="movies-list--card" onClick={getSingleMovieInfo}>
+    <div className={!modalOverlay ? "movies-list--card" : "movies-list--card selected-card"} onClick={getSingleMovieInfo}>
       <div className="movies-list--card-figure">
         <img
           src={`https://image.tmdb.org/t/p/w300_and_h450_bestv2${movie.poster_path}`}
