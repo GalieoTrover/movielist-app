@@ -1,7 +1,6 @@
 import Header from "./components/Header";
 import GenresFilter from "./components/GenresFilter";
 import MoviesList from "./components/MoviesList";
-import MoviesByGenre from "./components/MoviesByGenre";
 import { useState, useEffect } from 'react';
 
 const App = () => {
