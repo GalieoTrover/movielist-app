@@ -1,9 +1,10 @@
 import { useState } from "react";
 import MovieModal from "./MovieModal";
 
-const MovieCard = ({ movie }) => {
+const MovieCard = ({ movie, startYear }) => {
   // console.log(movie);
-  const desc = movie.overview.substring(0, 100) + "...";
+  // movie.map((el) => console.log(el.title))
+  // const desc = movie.overview.substring(0, 100) + "...";
   const [modalVisible, setModalVisible] = useState(false);
   const [modalOverlay, setModalOverlay] = useState(false);
   const [getMovieInfo, setGetMovieInfo] = useState([]);
@@ -30,24 +31,26 @@ const MovieCard = ({ movie }) => {
   const overlay = document.querySelector('.modal-overlay');
   modalOverlay ? overlay.style.display = 'block' : overlay.style.display = 'none';
 
-  const movieYear = movie.release_date.split('-')[0];
-
+  // const movieYear = movie.release_date.split('-')[0];
   return (
-    <div className={!modalOverlay ? "movies-list--card" : "movies-list--card selected-card"} onClick={getSingleMovieInfo}>
-      <div className="movies-list--card-figure">
-        <img
-          src={`https://image.tmdb.org/t/p/w300_and_h450_bestv2${movie.poster_path}`}
-          alt={movie.title}
-          className="movies-list--card-figure-img"
-        />
-      </div>
-      <div className="movies-list--card-info">
-        <h3>{movie.title}</h3>
-        <p>{movieYear}</p>
-        <div className="more-info">
-          {/* <p>{desc}</p> */}
+    <>
+
+      {/* <div className="movies-list--year">{movieYear}</div> */}
+      <div className={!modalOverlay ? "movies-list--card" : "movies-list--card selected-card"} onClick={getSingleMovieInfo}>
+        <div className="movies-list--card-figure">
+          <img
+            src={`https://image.tmdb.org/t/p/w300_and_h450_bestv2${movie.poster_path}`}
+            alt={movie.title}
+            className="movies-list--card-figure-img"
+          />
         </div>
-        {/* <div className="movie-info movie-genres-wrap">
+        <div className="movies-list--card-info">
+          <h3>{movie.title}</h3>
+          {/* <p>{movieYear}</p> */}
+          <div className="more-info">
+            {/* <p>{desc}</p> */}
+          </div>
+          {/* <div className="movie-info movie-genres-wrap">
           {getMovieInfo &&
             getMovieInfo.genres.map((genre) => (
               <span key={genre.id} className="movie-genres">
@@ -55,16 +58,17 @@ const MovieCard = ({ movie }) => {
               </span>
             ))}
         </div> */}
-      </div>
+        </div>
 
-      <MovieModal
-        modalVisible={modalVisible}
-        modalOverlay={modalOverlay}
-        movie={movie}
-        getMovieInfo={getMovieInfo}
-        getMovieCredits={getMovieCredits}
-      />
-    </div>
+        <MovieModal
+          modalVisible={modalVisible}
+          modalOverlay={modalOverlay}
+          movie={movie}
+          getMovieInfo={getMovieInfo}
+          getMovieCredits={getMovieCredits}
+        />
+      </div>
+    </>
   );
 };
 

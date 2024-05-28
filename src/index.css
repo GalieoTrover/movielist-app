@@ -638,3 +638,8 @@ header .header--search .header--search-icon:hover {
   border-bottom-left-radius: 5px;
   border-left: 0px;
 }
+
+.loader {
+  height: 500px;
+  background-color: red;
+}
