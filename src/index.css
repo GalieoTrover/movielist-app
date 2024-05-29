@@ -285,6 +285,15 @@ header .header--search .header--search-icon:hover {
   color: var(--white-color);
 }
 
+.genres-filter--reset {
+  height: 30px;
+  cursor: pointer;
+}
+
+.genres-filter--reseticon {
+  height: 100%;
+}
+
 /* movie listing */
 .year-heading {
   font-size: 22px;

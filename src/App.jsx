@@ -12,6 +12,7 @@ const App = () => {
   const [moviesByGenre, setMoviesByGenre] = useState([]);
   const [movieData, setMovieData] = useState([]);
   const [appState, setAppState] = useState("movieData");
+  const [selectedGenre, setSelectedGenre] = useState('');
   // const [loadMore, setLoadMore] = useState(false);
   // const [loadedMovies, setLoadedMovies] = useState([]);
   const [startYear, setStartYear] = useState(2012);
@@ -81,9 +82,14 @@ const App = () => {
     const jsonData = await fetchMovieBasedonGenreId.json();
     const genreData = await jsonData;
 
-    // console.log(genreData.results);
+    console.log(genreData.results);
     setMoviesByGenre(genreData.results)
     setAppState("moviesByGenre");
+    if (genreData.results.id === genreId) {
+      setSelectedGenre(`seclected-genre-${genreId}`)
+
+    }
+    // document.querySelector(`genre-${genreId}`).classList.add('selected-genre')
   }
 
   let results;
@@ -234,12 +240,10 @@ const App = () => {
     moviesArr.push(movieData[i]);
   }
 
-  console.log(appState, results);
-
   return (
     <>
       <Header searchTerm={searchTerm} getSearchTerm={getSearchTerm} fetchSearchResults={fetchSearchResults} />
-      <GenresFilter movieGenres={movieGenres} getMoviesByGenre={getMoviesByGenre} />
+      <GenresFilter movieGenres={movieGenres} getMoviesByGenre={getMoviesByGenre} selectedGenre={selectedGenre} setAppState={setAppState} />
       {/* <MoviesList searchTerm={searchTerm} results={results} appState={appState} startYear={startYear} setStartYear={setStartYear} /> */}
 
       {/* <MoviesList> */}
