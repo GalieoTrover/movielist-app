@@ -3,6 +3,7 @@ import GenresFilter from "./components/GenresFilter";
 import MoviesList from "./components/MoviesList";
 import InfiniteScroll from "./components/InfiniteScroll";
 import { useState, useEffect, useRef, useCallback } from 'react';
+import MovieCard from "./components/MovieCard";
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -23,20 +24,20 @@ const App = () => {
     const jsonData = await fetchData.json();
     const data = await jsonData;
     // console.log(typeof (data));
-    // const empty = [];
-    // empty.push([...data.results]);
+    const empty = [];
+    empty.push([...data.results]);
     // console.log(empty);
-    setMovieData(data.results);
+    // setMovieData(data.results);
 
-    // const fetch2013 = await fetch("https://api.themoviedb.org/3/discover/movie?api_key=2dca580c2a14b55200e784d157207b4d&sort_by=popularity.desc&primary_release_year=2013&page=1&vote_count.gte=100");
-    // const json2013 = await fetch2013.json();
-    // const data2013 = await json2013;
-    // empty.push(data2013.results);
+    const fetch2013 = await fetch("https://api.themoviedb.org/3/discover/movie?api_key=2dca580c2a14b55200e784d157207b4d&sort_by=popularity.desc&primary_release_year=2013&page=1&vote_count.gte=100");
+    const json2013 = await fetch2013.json();
+    const data2013 = await json2013;
+    empty.push(data2013.results);
     // console.log(empty);
     // setMovieData((prevData) => ([...prevData, data2013]))
 
 
-    // setMovieData(empty);
+    setMovieData(empty);
   };
   // console.log(movieData);
 
@@ -95,8 +96,6 @@ const App = () => {
       break;
     case "movieData":
       results = movieData;
-    // case "loadMoreMovies":
-    //   results = 
     default:
       results = movieData;
   }
@@ -114,6 +113,8 @@ const App = () => {
       console.log(startYear);
     }
   }
+
+  // console.log(movieData);
 
   // decrementYear(startYear);
   // incrementYear(startYear);
@@ -175,67 +176,94 @@ const App = () => {
   // console.log(results[0]);
   // results.forEach((result) => console.log(result))
   // const [items, setItems] = useState([]);
-  // const [isLoading, setIsLoading] = useState(false);
-  // // const [startYear, setStartYear] = useState(2013);
-  // const loaderRef = useRef(null);
-  // const api_key = "12f4b68458fda3289b7bb96bf49d95ea";
-  // const controller = new AbortController();
-  // const signal = controller.signal;
+  const [isLoading, setIsLoading] = useState(false);
+  // const [startYear, setStartYear] = useState(2013);
+  const loaderRef = useRef(null);
+  const api_key = "12f4b68458fda3289b7bb96bf49d95ea";
+  const controller = new AbortController();
+  const signal = controller.signal;
 
-  // const fetchData = useCallback(async () => {
-  //   if (isLoading) return;
-  //   setIsLoading(true);
+  const fetchData = useCallback(async () => {
+    if (isLoading) return;
+    setIsLoading(true);
 
-  //   const fetchData = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&sort_by=popularity.desc&primary_release_year=${startYear + 1}&page=1&vote_count.gte=100`, signal);
-  //   const jsonData = await fetchData.json();
-  //   const data = await jsonData;
+    const fetchData = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&sort_by=popularity.desc&primary_release_year=${startYear + 1}&page=1&vote_count.gte=100`, signal);
+    const jsonData = await fetchData.json();
+    const data = await jsonData;
 
-  //   // console.log(data.results);
-  //   // setItems((prevItems) => [...prevItems, ...data.results]);
-  //   setMovieData((prevData) => [...prevData, data.results])
-  //   // console.log("results", results);
+    // console.log(data.results);
+    // setItems((prevItems) => [...prevItems, ...data.results]);
+    setMovieData((prevData) => [...prevData, data.results])
+    // console.log("results", results);
 
-  //   // setItems(data.results)
+    // setItems(data.results)
 
-  //   if (startYear === 2024) {
-  //     controller.abort();
-  //     console.log('fetch aborted');
-  //     setIsLoading(false);
-  //   }
-  //   setStartYear((prevYear) => prevYear + 1);
+    if (startYear === 2024) {
+      controller.abort();
+      console.log('fetch aborted');
+      setIsLoading(false);
+      document.querySelector('.loader').style.display = 'none';
+    }
+    setStartYear((prevYear) => prevYear + 1);
 
-  //   setIsLoading(false);
-  // }, [startYear, isLoading]);
+    setIsLoading(false);
+  }, [startYear, isLoading]);
 
-  // useEffect(() => {
-  //   const observer = new IntersectionObserver((entries) => {
-  //     const target = entries[0];
-  //     if (target.isIntersecting) {
-  //       fetchData();
-  //     }
-  //   });
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      const target = entries[0];
+      if (target.isIntersecting) {
+        fetchData();
+      }
+    });
 
-  //   if (loaderRef.current) {
-  //     observer.observe(loaderRef.current);
-  //   }
+    if (loaderRef.current) {
+      observer.observe(loaderRef.current);
+    }
 
-  //   return () => {
-  //     if (loaderRef.current) {
-  //       observer.unobserve(loaderRef.current);
-  //     }
-  //   };
-  // }, [fetchData]);
+    return () => {
+      if (loaderRef.current) {
+        observer.unobserve(loaderRef.current);
+      }
+    };
+  }, [fetchData]);
 
-  // console.log(movieData);
+  const moviesArr = [];
+  let moviesYear = 2012;
+  for (let i = 0; i < movieData.length; i++) {
+    moviesArr.push(movieData[i]);
+  }
+
+  console.log(appState, results);
 
   return (
     <>
       <Header searchTerm={searchTerm} getSearchTerm={getSearchTerm} fetchSearchResults={fetchSearchResults} />
       <GenresFilter movieGenres={movieGenres} getMoviesByGenre={getMoviesByGenre} />
-      <MoviesList searchTerm={searchTerm} results={results} appState={appState} startYear={startYear} setStartYear={setStartYear} />
+      {/* <MoviesList searchTerm={searchTerm} results={results} appState={appState} startYear={startYear} setStartYear={setStartYear} /> */}
+
+      {/* <MoviesList> */}
+      {/* {moviesArr.map((movie) => (
+          movie.map((el) => (
+            <MovieCard key={el.id} movie={el} year={el.release_date} />
+          ))
+        ))} */}
+      {appState == "movieData" ? moviesArr.map((movie) => (
+        <MoviesList moviesYear={moviesYear}>
+          {movie.map((data) => (
+            <MovieCard movie={data} />
+          ))}
+        </MoviesList>
+      )) : <MoviesList moviesYear={moviesYear} results={results} />}
+      <div ref={loaderRef} className="loader">{isLoading && <p>Loading...</p>}</div>
+      {/* {appState == "searchResults" || appState == "moviesByGenre" && results.length == 0 && results.map((movie) => (
+        <MoviesList moviesYear={moviesYear} results={results}>
+          <MovieCard movie={movie} />
+        </MoviesList>
+      ))} */}
       {/* <div ref={loaderRef} className="loader">{isLoading && <p>Loading...</p>}</div> */}
       {/* {loadMore && <MoviesList searchTerm={searchTerm} results={loadedMovies} />} */}
-      <InfiniteScroll movieData={movieData} startYear={startYear} setStartYear={setStartYear} />
+      {/* <InfiniteScroll movieData={movieData} startYear={startYear} setStartYear={setStartYear} /> */}
     </>
   )
 }

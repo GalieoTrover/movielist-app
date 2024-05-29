@@ -1,9 +1,7 @@
 import { useState } from "react";
 import MovieModal from "./MovieModal";
 
-const MovieCard = ({ movie, startYear }) => {
-  // console.log(movie);
-  // movie.map((el) => console.log(el.title))
+const MovieCard = ({ movie }) => {
   // const desc = movie.overview.substring(0, 100) + "...";
   const [modalVisible, setModalVisible] = useState(false);
   const [modalOverlay, setModalOverlay] = useState(false);
@@ -31,11 +29,10 @@ const MovieCard = ({ movie, startYear }) => {
   const overlay = document.querySelector('.modal-overlay');
   modalOverlay ? overlay.style.display = 'block' : overlay.style.display = 'none';
 
-  // const movieYear = movie.release_date.split('-')[0];
+  const movieYear = movie.release_date.split('-')[0];
+
   return (
     <>
-
-      {/* <div className="movies-list--year">{movieYear}</div> */}
       <div className={!modalOverlay ? "movies-list--card" : "movies-list--card selected-card"} onClick={getSingleMovieInfo}>
         <div className="movies-list--card-figure">
           <img
@@ -46,7 +43,8 @@ const MovieCard = ({ movie, startYear }) => {
         </div>
         <div className="movies-list--card-info">
           <h3>{movie.title}</h3>
-          {/* <p>{movieYear}</p> */}
+          <p>{movieYear}</p>
+          {/* <p>{data.release_date.split('-')[0]}</p> */}
           <div className="more-info">
             {/* <p>{desc}</p> */}
           </div>

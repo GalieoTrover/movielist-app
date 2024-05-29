@@ -321,7 +321,7 @@ header .header--search .header--search-icon:hover {
   .movies-list--card:hover
   .movies-list--card-figure
   .movies-list--card-figure-img {
-  opacity: 0.8;
+  opacity: 0.3;
   transition: all 0.3s ease-in;
 }
 
@@ -333,7 +333,7 @@ header .header--search .header--search-icon:hover {
 
 .movies-list .movies-list--card:hover .movies-list--card-info {
   background: rgba(0, 0, 0, 1);
-  height: 50%;
+  /* height: 50%; */
   transition: all 0.3s ease-in;
 }
 
@@ -637,6 +637,13 @@ header .header--search .header--search-icon:hover {
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
   border-left: 0px;
+}
+
+.movies-list
+  .selected-card:hover
+  .movies-list--card-figure
+  .movies-list--card-figure-img {
+  opacity: 0.8;
 }
 
 .loader {

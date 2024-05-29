@@ -16,12 +16,12 @@ const InfiniteScroll = ({ startYear, setStartYear }) => {
     const fetchData = useCallback(async () => {
         if (isLoading) return;
         setIsLoading(true);
-        const fetchData = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&sort_by=popularity.desc&primary_release_year=${startYear + 2}&page=1&vote_count.gte=100`, signal);
-        const jsonData = await fetchData.json();
-        const data = await jsonData;
+        // const fetchData = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&sort_by=popularity.desc&primary_release_year=${startYear + 2}&page=1&vote_count.gte=100`, signal);
+        // const jsonData = await fetchData.json();
+        // const data = await jsonData;
 
         setItems((prevItems) => [...prevItems, ...data.results]);
-        console.log(data);
+        // console.log(data);
         // setItems(data.results)
 
         if (startYear === 2024) {
