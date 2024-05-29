@@ -655,7 +655,11 @@ header .header--search .header--search-icon:hover {
   opacity: 0.8;
 }
 
-.loader {
+.top-loader {
+  height: 100px;
+  background-color: blue;
+}
+.bottom-loader {
   height: 500px;
   background-color: red;
 }

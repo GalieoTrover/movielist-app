@@ -2,6 +2,7 @@ import { useState } from "react";
 import MovieModal from "./MovieModal";
 
 const MovieCard = ({ movie }) => {
+  // console.log(movie);
   // const desc = movie.overview.substring(0, 100) + "...";
   const [modalVisible, setModalVisible] = useState(false);
   const [modalOverlay, setModalOverlay] = useState(false);
