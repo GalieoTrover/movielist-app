@@ -11,10 +11,11 @@ const App = () => {
   const [moviesByGenre, setMoviesByGenre] = useState([]);
   const [movieData, setMovieData] = useState([]);
   const [appState, setAppState] = useState("movieData");
-  const [selectedGenre, setSelectedGenre] = useState('');
+  // const [selectedGenre, setSelectedGenre] = useState('');
   // const [loadMore, setLoadMore] = useState(false);
   // const [loadedMovies, setLoadedMovies] = useState([]);
   const [startYear, setStartYear] = useState(2012);
+  const [genre, setGenre] = useState("");
 
   const url =
     "https://api.themoviedb.org/3/discover/movie?api_key=2dca580c2a14b55200e784d157207b4d&sort_by=popularity.desc&primary_release_year=2012&page=1&vote_count.gte=100";
@@ -77,18 +78,14 @@ const App = () => {
     fetchMovieGenres();
   }, [])
 
-  async function getMoviesByGenre(genreId) {
+  async function getMoviesByGenre(genreId, genreName) {
     const fetchMovieBasedonGenreId = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=2dca580c2a14b55200e784d157207b4d&with_genres=${genreId}`)
     const jsonData = await fetchMovieBasedonGenreId.json();
     const genreData = await jsonData;
 
-    console.log(genreData.results);
     setMoviesByGenre(genreData.results)
     setAppState("moviesByGenre");
-    if (genreData.results.id === genreId) {
-      setSelectedGenre(`seclected-genre-${genreId}`)
-
-    }
+    setGenre(genreName);
     // document.querySelector(`genre-${genreId}`).classList.add('selected-genre')
   }
 
@@ -224,23 +221,14 @@ const App = () => {
   for (let i = 0; i < movieData.length; i++) {
     moviesArr.push(movieData[i]);
   }
-  // console.log(moviesArr);
-  // }
-
-  // moviesArr.map((date) => moviesYear = moviesYear + 1);
-
-
-
-
-  // console.log(bottomLoaderRef.current);
 
   return (
     <>
       <Header searchTerm={searchTerm} getSearchTerm={getSearchTerm} fetchSearchResults={fetchSearchResults} />
-      <GenresFilter movieGenres={movieGenres} getMoviesByGenre={getMoviesByGenre} selectedGenre={selectedGenre} setAppState={setAppState} />
+      <GenresFilter movieGenres={movieGenres} getMoviesByGenre={getMoviesByGenre} genre={genre} setAppState={setAppState} />
       {/* <div ref={topLoaderRef} className="top-loader">{isLoading && <p>Loading...</p>}</div> */}
       {appState == "movieData" ? moviesArr.map((movie) => (
-        <MoviesList movie={movie}>
+        <MoviesList movie={movie} appState={appState}>
           {movie.map((data) => (
             <>
               {/* <div className="movie-year">{data.release_date.split('-')[0]}</div> */}
@@ -248,7 +236,7 @@ const App = () => {
             </>
           ))}
         </MoviesList>
-      )) : <MoviesList results={results} />}
+      )) : <MoviesList results={results} searchTerm={searchTerm} appState={appState} genre={genre} />}
       <div ref={bottomLoaderRef} className="bottom-loader">{isLoading && <p>Loading...</p>}</div>
     </>
   )

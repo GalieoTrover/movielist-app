@@ -296,7 +296,19 @@ header .header--search .header--search-icon:hover {
 
 /* movie listing */
 .year-heading {
-  font-size: 22px;
+  font-size: 30px;
+  font-weight: 500;
+  padding: 15px 0;
+}
+
+.results-heading,
+.genres-heading {
+  font-size: 20px;
+}
+
+.results-heading span,
+.genres-heading span {
+  color: var(--primary-color);
   font-weight: 500;
 }
 
