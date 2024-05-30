@@ -709,3 +709,83 @@ header .header--search .header--search-icon:hover {
   height: 500px;
   background-color: red;
 }
+
+/* media queries */
+/* mobile */
+
+@media screen and (max-width: 768px) {
+  
+  .header--section {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .genres-filter {
+    flex-flow: row wrap;
+  }
+
+  .genres-filter .genres-filter--category {
+    padding: 10px;
+  }
+
+  .movies-list .movies-list--card {
+    width: calc(93% / 3);
+  }
+
+  .movies-list .movies-list--card-info {
+    height: 70%;
+  }
+
+  .year-heading {
+    font-size: 24px;
+  }
+
+  .movies-list--card.selected-card {
+    width: 100%;
+    border: 2px solid var(--secondary-color) !important;
+  }
+
+  .movies-list .selected-card .movies-list--card-info {
+    top: 0;
+  }
+
+  .movie-info.movie-genres-wrap {
+    bottom: unset;
+    margin-top: 10px;
+  }
+
+  .movies-list .selected-card .movies-list--modal.active {
+    width: 105%;
+    height: max-content;
+    transform: translateY(0);
+    top: 150px;
+    left: -7px;
+    border: 2px solid var(--secondary-color);
+  }
+
+  .movies-list--modal-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .movies-list--modal-closeicon {
+    width: 100%;
+  }
+
+  .movie-title--links {
+    flex-direction: column;
+    align-items: flex-start !important;
+  }
+
+  .movie-info.movie-cast-wrap,
+  .movie-info.movie-director-wrap {
+    width: 100%; 
+    margin: 15px 0 !important;
+  }
+
+  .movies-list .movies-list--card:nth-child(4) .movies-list--modal.active, .movies-list .movies-list--card:nth-child(5) .movies-list--modal.active, .movies-list .movies-list--card:nth-child(9) .movies-list--modal.active, .movies-list .movies-list--card:nth-child(10) .movies-list--modal.active, .movies-list .movies-list--card:nth-child(14) .movies-list--modal.active, .movies-list .movies-list--card:nth-child(15) .movies-list--modal.active, .movies-list .movies-list--card:nth-child(19) .movies-list--modal.active, .movies-list .movies-list--card:nth-child(20) .movies-list--modal.active {
+    transform: translateY(0);
+    left: -7px;
+  }
+
+}
