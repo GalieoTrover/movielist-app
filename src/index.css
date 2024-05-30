@@ -262,6 +262,16 @@ header .header--search .header--search-icon:hover {
   background-color: var(--secondary-color);
 }
 
+.header--logo {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.header--logo .logo-img {
+  width: 35px;
+}
+
 /* filter */
 .genres-filter {
   display: flex;
@@ -415,6 +425,10 @@ header .header--search .header--search-icon:hover {
   width: fit-content;
   font-size: 16px;
   cursor: pointer;
+}
+
+.load-prev--btn:hover {
+  background: var(--secondary-color);
 }
 
 /* modal window */

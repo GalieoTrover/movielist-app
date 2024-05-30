@@ -17,9 +17,9 @@ const App = () => {
   // const [startYear, setStartYear] = useState(2012);
   const [genre, setGenre] = useState("");
   const [prevYear, setPrevYear] = useState(2012);
-  const [nextYear, setNextYear] = useState(2013);
+  const [nextYear, setNextYear] = useState(2012);
 
-  const startYear = 2012;
+  // const startYear = 2012;
 
   const controller = new AbortController();
   const signal = controller.signal;
@@ -51,17 +51,7 @@ const App = () => {
 
   // TO-DO: add cleanup function to remove running bg promise using abort controller
   useEffect(() => {
-    // setTimeout(() =>
-    //   window.scrollTo(0, 1720), 600)
     getMoviesData();
-    // document.querySelector('.movielist:nth-child(2)').focus();
-    // let test = document.querySelector('.movielist:nth-child(4)');
-    // if (test !== null) { test.focus() }
-
-    return () => {
-      // controller.abort();
-      // console.log('fetch aborted');
-    }
   }, []);
 
   const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=2dca580c2a14b55200e784d157207b4d&query=${searchTerm}`;
@@ -77,7 +67,6 @@ const App = () => {
     setSearchTerm(e.target.value);
   }
 
-
   const genresUrl = "https://api.themoviedb.org/3/genre/movie/list?api_key=2dca580c2a14b55200e784d157207b4d";
 
   const fetchMovieGenres = async () => {
@@ -91,10 +80,6 @@ const App = () => {
 
   useEffect(() => {
     fetchMovieGenres();
-
-    return () => {
-      // controller.abort();
-    }
   }, [])
 
   async function getMoviesByGenre(genreId, genreName) {
@@ -123,7 +108,7 @@ const App = () => {
   }
 
   const [isLoading, setIsLoading] = useState(false);
-  // const [startYear, setStartYear] = useState(2013);
+  const [startYear, setStartYear] = useState(2013);
   const topLoaderRef = useRef(null);
   const bottomLoaderRef = useRef(null);
   const api_key = "12f4b68458fda3289b7bb96bf49d95ea";
@@ -152,16 +137,15 @@ const App = () => {
   }, [startYear, isLoading]);
 
   const fetchPrevYearData = useCallback(async () => {
-    if (isLoading) return;
-    setIsLoading(true);
+    // if (isLoading) return;
+    // setIsLoading(true);
 
-    // console.log(startYear);
     /* previous year's data (2011 - 2010) */
     const fetchPrevData = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&sort_by=popularity.desc&primary_release_year=${prevYear - 1}&page=1&vote_count.gte=100`, signal);
     const jsonPrevData = await fetchPrevData.json();
     const dataPrev = await jsonPrevData;
-    const empty = [];
-    empty.push(dataPrev);
+    // const empty = [];
+    // empty.push(dataPrev);
     setMovieData((prevData) => [dataPrev.results, ...prevData])
 
     if (startYear === 2009) {
@@ -181,6 +165,7 @@ const App = () => {
       const target = entries[0];
       if (target.isIntersecting) {
         fetchNextYearData();
+        console.log("loading")
       }
     });
 
@@ -207,7 +192,7 @@ const App = () => {
         topObserser.unobserve(topLoaderRef.current);
       }
     };
-  }, [fetchNextYearData]);
+  }, [fetchNextYearData, fetchPrevYearData]);
 
   const moviesArr = [];
   for (let i = 0; i < movieData.length; i++) {
@@ -253,11 +238,13 @@ const App = () => {
   }
 
   // console.log(moviesListRef);
+
+  function test() { console.log('hi'); }
   return (
     <>
       <Header searchTerm={searchTerm} getSearchTerm={getSearchTerm} fetchSearchResults={fetchSearchResults} />
       <GenresFilter movieGenres={movieGenres} getMoviesByGenre={getMoviesByGenre} genre={genre} setAppState={setAppState} />
-      {appState == "movieData" && <div className="load-prev">
+      {(appState == "movieData" && prevYear !== 2010) && <div className="load-prev">
         <button className="load-prev--btn" onClick={fetchPrevYearData}>Load Previous</button>
       </div>}
       {appState == "movieData" ? moviesArr.map((movie) => (

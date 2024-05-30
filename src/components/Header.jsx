@@ -1,4 +1,5 @@
 import searchIcon from "../assets/images/searchIcon.svg";
+import favicon from "../assets/images/favicon.png"
 
 const Header = ({ searchTerm, getSearchTerm, fetchSearchResults }) => {
   return (
@@ -6,7 +7,7 @@ const Header = ({ searchTerm, getSearchTerm, fetchSearchResults }) => {
       <div className="container">
         <div className="header--section">
           <div className="header--logo">
-            <h1>MovieList App</h1>
+            <img src={favicon} alt="Logo" className="logo-img" /><h1>MovieList App</h1>
           </div>
           <div className="header--search">
             <input
