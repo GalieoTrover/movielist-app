@@ -547,7 +547,8 @@ header .header--search .header--search-icon:hover {
   justify-content: center;
 }
 
-.movie-cast-wrap .movie-casts .movie-cast {
+.movie-cast-wrap .movie-casts .movie-cast,
+.movie-director-wrap .movie-director {
   width: calc(100% / 3);
 }
 
