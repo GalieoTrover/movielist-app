@@ -2,8 +2,6 @@ import { useState } from "react";
 import MovieModal from "./MovieModal";
 
 const MovieCard = ({ movie }) => {
-  // console.log(movie);
-  // const desc = movie.overview.substring(0, 100) + "...";
   const [modalVisible, setModalVisible] = useState(false);
   const [modalOverlay, setModalOverlay] = useState(false);
   const [getMovieInfo, setGetMovieInfo] = useState([]);
@@ -45,18 +43,14 @@ const MovieCard = ({ movie }) => {
         <div className="movies-list--card-info">
           <h3>{movie.title}</h3>
           <p>{movieYear}</p>
-          {/* <p>{data.release_date.split('-')[0]}</p> */}
-          <div className="more-info">
-            {/* <p>{desc}</p> */}
+          <div className="movie-info movie-genres-wrap">
+            {getMovieInfo.length !== 0 && modalOverlay &&
+              getMovieInfo.genres.map((genre) => (
+                <span key={genre.id} className="movie-genres">
+                  {genre.name}
+                </span>
+              ))}
           </div>
-          {/* <div className="movie-info movie-genres-wrap">
-          {getMovieInfo &&
-            getMovieInfo.genres.map((genre) => (
-              <span key={genre.id} className="movie-genres">
-                {genre.name}
-              </span>
-            ))}
-        </div> */}
         </div>
 
         <MovieModal

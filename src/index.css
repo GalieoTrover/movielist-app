@@ -517,7 +517,11 @@ header .header--search .header--search-icon:hover {
 
 .movie-genres-wrap {
   display: flex;
-  gap: 5px;
+  flex-flow: row wrap;
+  gap: 10px;
+  position: absolute;
+  bottom: 20px;
+  padding: 0 5px;
 }
 
 .movie-genres-wrap .movie-genres {
@@ -595,9 +599,6 @@ header .header--search .header--search-icon:hover {
 }
 
 .movies-list .selected-card {
-  border-top-left-radius: 0px;
-  border-bottom-left-radius: 0px;
-  /* border-left-width: 0px; */
   border: 2px solid var(--primary-color);
   border-right: 0px !important;
 }
@@ -614,8 +615,6 @@ header .header--search .header--search-icon:hover {
 
 .movies-list .selected-card .movies-list--modal.active {
   border-left: 0px;
-  border-top-right-radius: 0px;
-  border-bottom-right-radius: 0px;
   transition: all 0.3s ease-in;
   /* top: -2px;
   height: 101%; */
