@@ -20,7 +20,7 @@ const MovieModal = ({ modalVisible, modalOverlay, movie, getMovieInfo, getMovieC
             <div className="movie-links">
               {getMovieInfo && (
                 <div className="movie-info movie-links-wrap">
-                  <p>
+                  <div>
                     <div className="movie-links">
                       <div className="movie-links--imdb">
                         <a href={`https://www.imdb.com/title/${getMovieInfo.imdb_id}`}
@@ -30,7 +30,7 @@ const MovieModal = ({ modalVisible, modalOverlay, movie, getMovieInfo, getMovieC
                         <a href={getMovieInfo.homepage} target="_blank"><img src={officialSiteLogo} alt="officialSiteLogo" /></a>
                       </div>
                     </div>
-                  </p>
+                  </div>
                 </div>
               )}
             </div>
