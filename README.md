@@ -1,8 +1,32 @@
-# React + Vite
+# MovieList App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Movielist App lets you seach for movies, get the popular movies from every year using the [TMDB](https://www.themoviedb.org/) api.
 
-Currently, two official plugins are available:
+### Implemented features
+- Sort movies using popular genres.
+- Load movies on scroll down.
+- Search bar to search for a specific movie.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Steps to run locally
+
+1. Clone the repo
+
+`git clone https://github.com/GalieoTrover/movielist-app.git`
+
+2. Change directory
+
+`cd movielist-app`
+
+3. Install dependencies (node & npm should be present on the system)
+
+`npm i`
+
+4. Run the project locally
+
+`npm run dev`
+
+The project should be running on: `http://localhost:5173`
+
+### Hosted instance
+
+The project is hosted on netlify: https://movvielist.netlify.app/
