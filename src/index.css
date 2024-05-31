@@ -701,13 +701,10 @@ header .header--search .header--search-icon:hover {
   opacity: 0.8;
 }
 
-.top-loader {
-  height: 100px;
-  background-color: blue;
-}
 .bottom-loader {
   height: 500px;
-  background-color: red;
+  background-color: transparent;
+  text-align: center;
 }
 
 /* media queries */

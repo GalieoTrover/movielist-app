@@ -92,9 +92,6 @@ const App = () => {
       results = movieData;
   }
 
-
-
-
   const fetchNextYearData = useCallback(async () => {
     const fetchNextData = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&sort_by=popularity.desc&primary_release_year=${nextYear + 1}&page=1&vote_count.gte=100`, signal);
     const jsonNextData = await fetchNextData.json();
