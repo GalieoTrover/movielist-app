@@ -1,9 +1,10 @@
 import resetIcon from '../assets/images/resetIcon.svg';
 
-const GenresFilter = ({ movieGenres, getMoviesByGenre, setAppState }) => {
+const GenresFilter = ({ movieGenres, getMoviesByGenre, setAppState, setSearchTerm }) => {
 
     const resetState = () => {
         setAppState("movieData");
+        setSearchTerm("");
     }
 
     return (

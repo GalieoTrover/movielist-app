@@ -73,9 +73,10 @@ const App = () => {
     const jsonData = await fetchMovieBasedonGenreId.json();
     const genreData = await jsonData;
 
-    setMoviesByGenre(genreData.results)
+    setMoviesByGenre(genreData.results);
     setAppState("moviesByGenre");
     setGenre(genreName);
+    setSearchTerm("");
   }
 
   let results;
@@ -154,7 +155,7 @@ const App = () => {
   return (
     <>
       <Header searchTerm={searchTerm} getSearchTerm={getSearchTerm} fetchSearchResults={fetchSearchResults} />
-      <GenresFilter movieGenres={movieGenres} getMoviesByGenre={getMoviesByGenre} genre={genre} setAppState={setAppState} />
+      <GenresFilter movieGenres={movieGenres} getMoviesByGenre={getMoviesByGenre} genre={genre} setAppState={setAppState} setSearchTerm={setSearchTerm} />
       {(appState == "movieData" && prevYear !== 2010) && <div className="load-prev">
         <button className="load-prev--btn" onClick={fetchPrevYearData}>Load Previous</button>
       </div>}
