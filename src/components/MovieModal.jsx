@@ -58,7 +58,7 @@ const MovieModal = ({ modalVisible, modalOverlay, movie, getMovieInfo, getMovieC
                 getMovieCredits.crew
                   .filter((crew) => crew.job == "Director")
                   .slice(0, 2).map((director) => (
-                    <div key={director.key} className="movie-director">
+                    <div key={director.id} className="movie-director">
                       <div className="movie-cast--figure">
                         <img src={`https://image.tmdb.org/t/p/w300_and_h450_bestv2${director.profile_path}`} alt="" />
                       </div>
