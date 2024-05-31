@@ -711,10 +711,71 @@ header .header--search .header--search-icon:hover {
 }
 
 /* media queries */
+
+/* tablets */
+
+@media screen and (max-width: 1368px) {
+  .movies-list .selected-card .movies-list--modal.active {
+    width: 550px;
+    transform: translateX(40%);
+  }
+
+  .movies-list .movies-list--card:nth-child(4) .movies-list--modal.active,
+  .movies-list .movies-list--card:nth-child(5) .movies-list--modal.active,
+  .movies-list .movies-list--card:nth-child(9) .movies-list--modal.active,
+  .movies-list .movies-list--card:nth-child(10) .movies-list--modal.active,
+  .movies-list .movies-list--card:nth-child(14) .movies-list--modal.active,
+  .movies-list .movies-list--card:nth-child(15) .movies-list--modal.active,
+  .movies-list .movies-list--card:nth-child(19) .movies-list--modal.active,
+  .movies-list .movies-list--card:nth-child(20) .movies-list--modal.active {
+    transform: translateX(-42%);
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .movie-genres-wrap {
+    bottom: unset;
+    margin-top: 5px;
+    padding: 0 6px;
+    flex-flow: row wrap;
+  }
+
+  .movie-genres {
+    font-size: 13px;
+  }
+
+  .movies-list .selected-card .movies-list--modal.active {
+    transform: translateX(0px);
+    top: 200px;
+    left: -2px;
+    width: 500px;
+    height: max-content;
+    border: 3px solid var(--secondary-color) !important;
+  }
+
+  .movies-list--card.selected-card {
+    border: 2px solid var(--secondary-color) !important;
+  }
+
+  .movies-list .movies-list--card-info {
+    height: 35%;
+  }
+
+  .movies-list .movies-list--card:nth-child(4) .movies-list--modal.active,
+  .movies-list .movies-list--card:nth-child(5) .movies-list--modal.active,
+  .movies-list .movies-list--card:nth-child(9) .movies-list--modal.active,
+  .movies-list .movies-list--card:nth-child(10) .movies-list--modal.active,
+  .movies-list .movies-list--card:nth-child(14) .movies-list--modal.active,
+  .movies-list .movies-list--card:nth-child(15) .movies-list--modal.active,
+  .movies-list .movies-list--card:nth-child(19) .movies-list--modal.active,
+  .movies-list .movies-list--card:nth-child(20) .movies-list--modal.active {
+    transform: translateX(2px);
+  }
+}
+
 /* mobile */
 
 @media screen and (max-width: 768px) {
-  
   .header--section {
     flex-direction: column;
     gap: 15px;
@@ -779,13 +840,19 @@ header .header--search .header--search-icon:hover {
 
   .movie-info.movie-cast-wrap,
   .movie-info.movie-director-wrap {
-    width: 100%; 
+    width: 100%;
     margin: 15px 0 !important;
   }
 
-  .movies-list .movies-list--card:nth-child(4) .movies-list--modal.active, .movies-list .movies-list--card:nth-child(5) .movies-list--modal.active, .movies-list .movies-list--card:nth-child(9) .movies-list--modal.active, .movies-list .movies-list--card:nth-child(10) .movies-list--modal.active, .movies-list .movies-list--card:nth-child(14) .movies-list--modal.active, .movies-list .movies-list--card:nth-child(15) .movies-list--modal.active, .movies-list .movies-list--card:nth-child(19) .movies-list--modal.active, .movies-list .movies-list--card:nth-child(20) .movies-list--modal.active {
+  .movies-list .movies-list--card:nth-child(4) .movies-list--modal.active,
+  .movies-list .movies-list--card:nth-child(5) .movies-list--modal.active,
+  .movies-list .movies-list--card:nth-child(9) .movies-list--modal.active,
+  .movies-list .movies-list--card:nth-child(10) .movies-list--modal.active,
+  .movies-list .movies-list--card:nth-child(14) .movies-list--modal.active,
+  .movies-list .movies-list--card:nth-child(15) .movies-list--modal.active,
+  .movies-list .movies-list--card:nth-child(19) .movies-list--modal.active,
+  .movies-list .movies-list--card:nth-child(20) .movies-list--modal.active {
     transform: translateY(0);
     left: -7px;
   }
-
 }
