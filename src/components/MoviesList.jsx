@@ -1,6 +1,6 @@
 import MovieCard from "./MovieCard";
 
-const MoviesList = ({ searchTerm, results, appState, genre, children, movie, moviesListRef }) => {
+const MoviesList = ({ searchTerm, results, appState, genre, children, movie }) => {
 
   const moviesYearArr = [];
   let moviesYear;
@@ -29,7 +29,7 @@ const MoviesList = ({ searchTerm, results, appState, genre, children, movie, mov
 
   return (
     <>
-      <section className={`movielist ${appState}`} ref={moviesListRef} >
+      <section className={`movielist ${appState}`} >
         <div className="container">
           {setHeading(appState)}
           <div className="movies-list" >
