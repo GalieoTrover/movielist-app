@@ -25,7 +25,7 @@ Movielist App lets you seach for movies, get the popular movies from every year 
 
 `npm run dev`
 
-The project should be running on: `http://localhost:5173`
+The project should be running on: http://localhost:5173
 
 ### Hosted instance
 
