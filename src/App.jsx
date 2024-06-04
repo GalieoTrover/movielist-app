@@ -52,7 +52,7 @@ const App = () => {
     const fetchGenres = await fetch(genresUrl, { signal });
     const jsonGenres = await fetchGenres.json();
     const data = await jsonGenres;
-    const movieGenres = data.genres.slice(0, 5);
+    const movieGenres = data.genres.slice(0, 10);
 
     setMovieGenres(movieGenres);
   }
@@ -118,7 +118,7 @@ const App = () => {
 
     setMovieData((prevData) => [dataPrev.results, ...prevData])
 
-    if (prevYear === 2009) {
+    if (prevYear === 2005) {
       controller.abort();
       console.log('fetch aborted');
       setIsLoading(false);
@@ -156,7 +156,7 @@ const App = () => {
     <>
       <Header searchTerm={searchTerm} getSearchTerm={getSearchTerm} fetchSearchResults={fetchSearchResults} />
       <GenresFilter movieGenres={movieGenres} getMoviesByGenre={getMoviesByGenre} genre={genre} setAppState={setAppState} setSearchTerm={setSearchTerm} />
-      {(appState == "movieData" && prevYear !== 2010) && <div className="load-prev">
+      {(appState == "movieData" && prevYear !== 2005) && <div className="load-prev">
         <button className="load-prev--btn" onClick={fetchPrevYearData}>Load Previous</button>
       </div>}
       {appState == "movieData" ? moviesArr.map((movie) => (

@@ -272,6 +272,21 @@ header .header--search .header--search-icon:hover {
   width: 35px;
 }
 
+.header--right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.header--github-link a {
+  color: var(--white-color);
+  text-decoration: none;
+}
+
+.header--github-link a:hover {
+  text-decoration: underline;
+}
+
 /* filter */
 .genres-filter {
   display: flex;
@@ -780,6 +795,7 @@ header .header--search .header--search-icon:hover {
 
   .genres-filter {
     flex-flow: row wrap;
+    gap: 10px;
   }
 
   .genres-filter .genres-filter--category {
