@@ -1,6 +1,6 @@
 import resetIcon from '../assets/images/resetIcon.svg';
 
-const GenresFilter = ({ movieGenres, getMoviesByGenre, setAppState, setSearchTerm }) => {
+const GenresFilter = ({ movieGenres, getMoviesByGenre, appState, setAppState, setSearchTerm }) => {
 
     const resetState = () => {
         setAppState("movieData");
@@ -9,11 +9,11 @@ const GenresFilter = ({ movieGenres, getMoviesByGenre, setAppState, setSearchTer
 
     return (
         <section id="filter">
-            <div className="container">
+            <div className={`container ${appState}`}>
                 <div className="genres-filter">
-                    <div className="genres-filter--reset">
+                    {appState === "searchResults" | appState === "moviesByGenre" ? <div className="genres-filter--reset">
                         <img src={resetIcon} alt="resetIcon" className="genres-filter--reseticon" onClick={resetState} />
-                    </div>
+                    </div> : ""}
                     {!movieGenres.length ? '' : movieGenres.map((genre) => (
                         <div className="genres-filter--category" key={genre.id} onClick={() => getMoviesByGenre(genre.id, genre.name)}>
                             <p>{genre.name}</p>
