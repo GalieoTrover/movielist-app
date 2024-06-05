@@ -3,6 +3,7 @@ import GenresFilter from "./components/GenresFilter";
 import MoviesList from "./components/MoviesList";
 import { useState, useEffect, useRef, useCallback } from 'react';
 import MovieCard from "./components/MovieCard";
+import Loader from "./components/Loader";
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -14,7 +15,8 @@ const App = () => {
   const [genre, setGenre] = useState("");
   const [prevYear, setPrevYear] = useState(2012);
   const [nextYear, setNextYear] = useState(2012);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [fetchError, setFetchError] = useState("");
   const bottomLoaderRef = useRef(null);
   const api_key = "2dca580c2a14b55200e784d157207b4d";
 
@@ -22,15 +24,20 @@ const App = () => {
   const signal = controller.signal;
 
   const getMoviesData = async () => {
-    const fetch2012 = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&sort_by=popularity.desc&primary_release_year=2012&page=1&vote_count.gte=100`, { signal });
-    const jsonData2012 = await fetch2012.json();
-    const data2012 = await jsonData2012;
+    try {
+      const fetch2012 = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&sort_by=popularity.desc&primary_release_year=2012&page=1&vote_count.gte=100`, { signal });
+      const jsonData2012 = await fetch2012.json();
+      const data2012 = await jsonData2012;
 
-    const fetch2013 = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&sort_by=popularity.desc&primary_release_year=2013&page=1&vote_count.gte=100`, { signal });
-    const json2013 = await fetch2013.json();
-    const data2013 = await json2013;
+      const fetch2013 = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&sort_by=popularity.desc&primary_release_year=2013&page=1&vote_count.gte=100`, { signal });
+      const json2013 = await fetch2013.json();
+      const data2013 = await json2013;
 
-    setMovieData([data2012.results, data2013.results]);
+      setMovieData([data2012.results, data2013.results]);
+      setIsLoading(false);
+    } catch (error) {
+      setFetchError(error);
+    }
   };
 
   const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${api_key}&query=${searchTerm}`;
@@ -155,10 +162,12 @@ const App = () => {
   return (
     <>
       <Header searchTerm={searchTerm} getSearchTerm={getSearchTerm} fetchSearchResults={fetchSearchResults} />
-      <GenresFilter movieGenres={movieGenres} getMoviesByGenre={getMoviesByGenre} genre={genre} setAppState={setAppState} setSearchTerm={setSearchTerm} />
+      <GenresFilter movieGenres={movieGenres} getMoviesByGenre={getMoviesByGenre} genre={genre} appState={appState} setAppState={setAppState} setSearchTerm={setSearchTerm} />
       {(appState == "movieData" && prevYear !== 2005) && <div className="load-prev">
         <button className="load-prev--btn" onClick={fetchPrevYearData}>Load Previous</button>
       </div>}
+      {isLoading && <Loader />}
+      {fetchError && <p>{fetchError}</p>}
       {appState == "movieData" ? moviesArr.map((movie) => (
         <MoviesList key={moviesArr.indexOf(movie)} movie={movie} appState={appState}>
           {movie.map((data) => (
@@ -168,7 +177,7 @@ const App = () => {
           ))}
         </MoviesList>
       )) : <MoviesList results={results} searchTerm={searchTerm} appState={appState} genre={genre} />}
-      {appState == "movieData" && <div ref={bottomLoaderRef} className="bottom-loader">{isLoading && <p>Loading...</p>}</div>}
+      {appState == "movieData" && movieData.length !== 0 && <div ref={bottomLoaderRef} className="bottom-loader">{isLoading && <p>Loading...</p>}</div>}
     </>
   )
 }
