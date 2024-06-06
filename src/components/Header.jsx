@@ -1,7 +1,16 @@
 import searchIcon from "../assets/images/searchIcon.svg";
-import favicon from "../assets/images/favicon.png"
+import favicon from "../assets/images/favicon.png";
 
-const Header = ({ searchTerm, getSearchTerm, fetchSearchResults }) => {
+const Header = ({ searchTerm, setSearchResults, setSearchTerm, setAppState }) => {
+  const getSearchResults = async () => {
+    const fetchSearchResults = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=2dca580c2a14b55200e784d157207b4d&query=${searchTerm}`);
+    const jsonSearchResults = await fetchSearchResults.json();
+    const dataSearchResults = await jsonSearchResults;
+
+    setSearchResults(dataSearchResults.results);
+    setAppState("searchResults");
+  }
+
   return (
     <header>
       <div className="container">
@@ -14,11 +23,11 @@ const Header = ({ searchTerm, getSearchTerm, fetchSearchResults }) => {
               <input
                 type="text"
                 value={searchTerm}
-                onChange={getSearchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder="Search for a movie..."
                 className="header--search-input"
               />
-              <button className="header--search-icon" onClick={fetchSearchResults}>
+              <button className="header--search-icon" onClick={getSearchResults}>
                 <img src={searchIcon} alt="search-icon" />
               </button>
             </div>
