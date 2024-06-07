@@ -2,6 +2,8 @@
 
 Movielist App lets you seach for movies, get the popular movies from every year using the [TMDB](https://www.themoviedb.org/) api.
 
+![MovvieList Home](https://raw.githubusercontent.com/GalieoTrover/movielist-app/main/screens/MovvieList.png "MovvieList Home")
+
 ### Implemented features
 - Sort movies using popular genres.
 - Load movies on scroll down.
